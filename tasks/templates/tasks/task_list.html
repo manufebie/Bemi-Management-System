@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% block title %}Tasks{% endblock %}
+
+{% block content %}
+<!-- TASK CREATE FORM -->
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="header">
+                <h4-title>
+                    Create new task
+                </h4-title>
+            </div>
+            <div class="content">
+                <form method="POST">
+                    {% csrf_token %}
+                    {% for field in form %}
+                       <div class="form-group">
+                           {{ field }}
+                       </div>
+                    {% endfor %}
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END TASK CREATE -->
+
+<!-- EMPLOYEE TASK OVERVIEW -->
+<div class="row">
+    {% for task in task_list %}
+    <div class="col-md-4">
+        <div class="card">
+            <div class="header">
+                <a href=""><h4 class="title">{{ task.name }}</h4></a>
+                <a href="{% url 'employees:detail' lastname=task.employee.lastname %}">
+                    <small class="text-muted">{{ task.employee }}</small>
+                </a>
+            </div>
+            <div class="content">
+                <small>Deadline - {{ task.deadline }}</small>
+                {% if task.active == True %}
+                    <p>is active</p>
+                {% else %}
+                    <p>not active</p>
+                {% endif %}
+                <hr>
+                <!-- COMMENT SECTION -->
+                {% for comment in task.comment_set.all %}
+                    {% if comment %}
+                        <small> <i class="pe-7s-comment"></i> {{ comment.employee }} commented:</small>
+                        <p>{{ comment.content }}</p>
+                    {% endif %}
+                {% endfor %}
+                <!-- END COMMENT SECTION -->
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>       
+{% endblock content %}

@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block title %} {% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="header">
+                <h4 class="title">Start project</h4>
+            </div>
+            <div class="content">
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    {% for field in form %}
+                    <div class="form-group">
+                        {{ field }}
+                    </div>
+                    {% endfor %}
+                    <input type="submit" value="Start Project" class="btn btn-success">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="header">
+                <h4 class="title">Projects</h4>
+            </div>
+            <div class="content">
+                {% for pr in project_list %}
+                    {% if pr.active == True %}
+                        {% for emp in pr.employees.set_all %}
+                        <p><{{ emp.firstname }}</p>
+                        {% endfor %}
+                        <p>Division:{{ pr.division }}, CLient:{{ pr.client}}, {{ pr.description }}</p>
+                        <p>Deadline:{{ pr.deadline }}</p>
+                        <p><strong> - Active project</strong></p>
+                        <hr>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

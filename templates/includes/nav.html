@@ -1,0 +1,48 @@
+<div class="sidebar-wrapper">
+    <div class="logo">
+        <a href="#" class="simple-text">
+             Bemi Management
+        </a>
+    </div>
+
+    <!-- Sidebar navigation -->
+    {% load active_link_tags %}
+    <ul class="nav">
+        <li class="">
+            <a href="{% url 'dashboard' %}">
+                <i class="pe-7s-graph"></i>
+                <p>Dashboard</p>
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'tasks:list' %}" class="{% active_link 'tasks:list' %}">
+                <i class="pe-7s-note"></i>
+                <p>Tasks</p>
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'projects:list' %}">
+                <i class="pe-7s-portfolio"></i>
+                <p>Projects</p>
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'documents:list' %}">
+                <i class="pe-7s-folder"></i>
+                <p>Documents</p>
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'clients:list' %}">
+                <i class="pe-7s-network"></i>
+                <p>Clients</p> 
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'ideas:list' %}">
+                <i class="pe-7s-pin"></i>
+                <p>Ideas</p>
+            </a>
+        </li>
+    </ul>
+</div>

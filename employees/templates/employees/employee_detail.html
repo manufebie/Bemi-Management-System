@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% block title %}E | {{ employee.firstname }} {{ employee.lastname }}{% endblock %}
+
+{% block content %}
+<div class="col-md-12">
+    <div class="card card-user">
+        <div class="image">
+            {% if employee.cover_image %}
+                <img src="{{ employee.cover_image.url }}">
+            {% endif %}
+        </div>
+        <div class="content">
+            <div class="author">
+                <a href="#">
+                    {% if employee.avatar %}
+                        <img class="avatar border-gray" src="{{ employee.avatar.url }}" alt="..."/>
+                    {% endif %}
+                    <h4 class="title">{{ employee.firstname }} {{ employee.lastname}}<br />
+                    <small>{{ employee.job_title }}</small>
+                    </h4>
+                </a>
+            </div>
+        </div>
+        <hr>
+        <div class="text-center">
+            <!-- optional user info -->
+        </div>
+    </div>
+</div>
+<div class="col-md-6">
+    <div class="card">
+        <div class="header">
+            <h4 class="title">Tasks</h4>
+        </div>
+        <div class="content table-responsive table-full-width">
+                <table class="table table-hover table-striped">
+                    <thead>
+                        <th>task name</th>
+                        <th>description</th>
+                        <th>date</th>
+                        <th>status</th>
+                    </thead>
+                    <tbody>
+                        {% for task in employee.task_set.all %}
+                        <tr>
+                            <td> {{ task.name }}</td>
+                            <td>{{ task.description }}</td>
+                            <td>{{ task.timestamp }}</td>
+                            <td></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+           </div>
+    </div>
+</div>
+<div class="col-md-6">
+    <div class="card">
+        <div class="header">
+            <h4 class="title">Projects</h4>
+        </div>
+        <div class="content">
+            
+        </div>
+    </div>
+</div>
+{% endblock %}

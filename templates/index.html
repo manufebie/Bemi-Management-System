@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard |{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="header">
+                    <h4 class="title">Welcome {{ user.firstname }} {{ user.lastname }}</h4>
+                </div>
+                <div class="content">
+                    <p>Lorem Ipsum</p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
