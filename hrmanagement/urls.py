@@ -26,7 +26,6 @@ urlpatterns = [
     url(r'^doc/', include('documents.urls', namespace='documents')),
     url(r'^projects/', include('projects.urls', namespace='projects')),
     url(r'^clients/', include('clients.urls', namespace='clients')),
-    url(r'^ideas/', include('ideas.urls', namespace='ideas')),
 ] 
 
 if settings.DEBUG:
