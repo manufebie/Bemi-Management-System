@@ -27,7 +27,7 @@
 </div>
 <!-- END TASK CREATE -->
 
-<!-- EMPLOYEE TASK OVERVIEW -->
+<!-- EMPLOYEE TASK OVERVIEW --
 <div class="row">
     {% for task in task_list %}
     <div class="col-md-4">
@@ -35,10 +35,15 @@
             <div class="header">
                 <a href=""><h4 class="title">{{ task.name }}</h4></a>
                 <a href="{% url 'employees:detail' lastname=task.employee.lastname %}">
-                    <small class="text-muted">{{ task.employee }}</small>
+                    <small class="text-muted"><strong>{{ task.employee }}</strong> | {{ task.timestamp|date:'D d M Y' }} </small>
                 </a>
             </div>
             <div class="content">
+                <p>{{ task.description }}</p>
+                {% if task.obstacles %}
+                    <small>Obstacles</small>
+                    <p>{{ task.obstacles }}</p>
+                {% endif %}
                 <small>Deadline - {{ task.deadline }}</small>
                 {% if task.active == True %}
                     <p>is active</p>
@@ -47,14 +52,31 @@
                 {% endif %}
                 <hr>
                 <!-- COMMENT SECTION -->
-                {% for comment in task.comment_set.all %}
-                    {% if comment %}
-                        <small> <i class="pe-7s-comment"></i> {{ comment.employee }} commented:</small>
-                        <p>{{ comment.content }}</p>
-                    {% endif %}
-                {% endfor %}
-                <!-- END COMMENT SECTION -->
+                
+                <!-- END COMMENT SECTION
             </div>
+        </div>
+    </div>
+    {% endfor %}
+</div> -->
+<div class="masonry-container">
+    {% for task in task_list %}
+    <div class="card-box col-md-4">
+        <div class="card">                                            
+            <div class="content">
+                <h6 class="category">{{ task.employee }}</h6>
+                <h4 class="title">{{ task.name }}</h4>
+                <br>
+                <small>Description</small>
+                <p class="description">{{ task.description }}</p>
+                <small>Obstacles</small>
+                {% if task.obstacles %}
+                    <p>{{ task.obstacles }}</p>
+                {% endif %}
+                <hr>
+                <small><strong>Deadline</strong></small>
+                <p>{{ task.deadline|date:'d M Y' }}</p>
+            </div>                                           
         </div>
     </div>
     {% endfor %}

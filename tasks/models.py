@@ -8,6 +8,7 @@ from django.conf import settings
 
 class Task(models.Model):
     employee = models.ForeignKey(settings.AUTH_USER_MODEL)
+    
     # project = models.ForeignKey(Project)
     name = models.CharField(max_length=255,  null=True)
     description = models.CharField(max_length=255, blank=True, null=True)

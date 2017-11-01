@@ -25,5 +25,4 @@ class ProjectListView(LoginRequiredMixin, SuccessMessageMixin, ListView, BaseCre
 
         context = super(ProjectListView, self).get_context_data(**kwargs)
         return context
-
      

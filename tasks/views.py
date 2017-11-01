@@ -1,7 +1,7 @@
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
-from django.views.generic import ListView, DeleteView
+from django.views.generic import ListView, DetailView, DeleteView
 from django.views.generic.edit import BaseCreateView
 from django.urls import reverse_lazy
 
@@ -33,8 +33,13 @@ class TaskListCreateView(LoginRequiredMixin, SuccessMessageMixin, ListView, Base
     def form_valid(self, form):
         task = form.save(commit=False)
         task.employee = self.request.user
-        # task.save()
         return super(TaskListCreateView, self).form_valid(form)
+
+
+class TaskDetailView(DetailView):
+    model = Task
+    context_object_name = 'task'
+
 
 class TaskDeleteView(DeleteView):
     model = Task
