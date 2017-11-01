@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
    
     # 3rd party apss
+    'django_celery_beat',
+    'django_celery_results',
     'phonenumber_field',
     'debug_toolbar',
     'active_link',
