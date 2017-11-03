@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from django.views.generic.edit import BaseCreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
@@ -9,7 +9,7 @@ from .models import Project
 
 
 class ProjectListView(LoginRequiredMixin, SuccessMessageMixin, ListView, BaseCreateView):
-     queryset = Project.objects.order_by('-timestamp')
+     queryset = Project.objects.order_by('-id')
      form_class = ProjectForm
      success_message = 'You have successfully started a new project for "%(client)s"'
      #template_name = ''
@@ -26,3 +26,7 @@ class ProjectListView(LoginRequiredMixin, SuccessMessageMixin, ListView, BaseCre
         context = super(ProjectListView, self).get_context_data(**kwargs)
         return context
      
+
+class ProjectDetailView(DetailView):
+        model = Project
+        context_object_name = 'project'

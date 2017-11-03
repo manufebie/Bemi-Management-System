@@ -13,6 +13,9 @@
                     {% csrf_token %}
                     {% for field in form %}
                     <div class="form-group">
+                        {% if field.help_text %}
+                            <h6><small class="category">{{ field.help_text }}</small></h6>
+                        {% endif %}
                         {{ field }}
                     </div>
                     {% endfor %}
@@ -27,21 +30,57 @@
     <div class="col-md-12">
         <div class="card">
             <div class="header">
-                <h4 class="title">Projects</h4>
+                <h4 class="title">Projects Overview</h4>
             </div>
-            <div class="content">
-                {% for pr in project_list %}
-                    {% if pr.active == True %}
-                        {% for emp in pr.employees.set_all %}
-                        <p><{{ emp.firstname }}</p>
-                        {% endfor %}
-                        <p>Division:{{ pr.division }}, CLient:{{ pr.client}}, {{ pr.description }}</p>
-                        <p>Deadline:{{ pr.deadline }}</p>
-                        <p><strong> - Active project</strong></p>
-                        <hr>
-                    {% endif %}
-                {% endfor %}
-            </div>
+            <div class="content table-responsive table-full-width">
+                    <table class="table table-hover table-striped">
+                        <thead>
+                            <th>ID</th>
+                            <th>Project Name</th>
+                            <th>Project Team</th>
+                            <th>Division</th>
+                            <th>Client</th>
+                            <th>Descriptions</th>
+                            <th>Startdate</th>
+                            <th>Deadline</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </thead>
+                        <tbody>
+                            {% for project in project_list %}
+                            <tr>
+                                <td> <a href="">#{{ project.id }}</a></td>
+                                <td>{{ project.name }}</td>
+                                    <td>
+                                        {% for employee in project.employees.all %}
+                                            - {{ employee }}
+                                        {% endfor %}
+                                    </td>
+                                <td>{{ project.division }}</td>
+                                <td>{{ project.client }}</td>
+                                <td>{{ project.description }}</td>
+                                <td>{{ project.timestamp|date:'D d M Y' }}</td>
+                                <td>{{ project.deadline|date:'D d M Y' }}</td>
+                                <td>
+                                    {% if project.active is True %}
+                                    Active
+                                    {% else %}
+                                    Case Closed
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <a href="">
+                                        <i class="fa fa-trash-o" aria-hidden="true"></i>    
+                                    </a>
+                                    <a href="">
+                                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+               </div>
         </div>
     </div>
 </div>

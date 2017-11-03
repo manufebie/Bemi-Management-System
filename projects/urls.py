@@ -4,4 +4,5 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.ProjectListView.as_view(), name='list'),
+    url(r'^(?P<pk>[0-9]+)/$', views.ProjectDetailView.as_view(), name='delete'),
 ]

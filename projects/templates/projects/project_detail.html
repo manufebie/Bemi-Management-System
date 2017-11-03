@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}{{ project.id }}{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <div class="card">
+            <div class="header">
+                <h3 class="title">{{ project.name }}</h3>
+                <p class="category">{{ project.division }} - {{ project.client }}</p>
+                <p class="category">Started: {{ project.timestamp|date:'D d M Y' }}</p>
+            </div>
+            <div class="content">
+                <h6 class="title">Description</h5>
+                <p>{{ project.description }}</p>
+                <h6 class="title">Deadline</h6>
+                <p>{{ project.deadline|date:'D d M Y' }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

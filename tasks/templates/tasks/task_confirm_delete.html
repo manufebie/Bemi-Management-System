@@ -1,4 +1,20 @@
 {% extends 'base.html' %}
 {% block title %}{% endblock %}
 
-{% block content %}{% endblock %}
+{% block content %}
+<div class="card">
+    <div class="header">
+        <h4 class="title">Confirm Delete</h6>
+        <p class="category">Are you sure you want to delete task - {{ task.name }}</p>
+    </div>
+    <div class="content">
+        <form action="" method="POST">
+            {% csrf_token %}
+            <input type="submit" value="Yes" class="btn btn-success">
+            <a href="{% url 'tasks:list' %}">
+                <button class="btn btn-warning">No</button>
+            </a>
+        </form>
+    </div>
+</div>
+{% endblock %}

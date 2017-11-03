@@ -32,18 +32,28 @@
     <div class="col-md-3 col-sm-6">
         <div class="card">                                            
             <div class="content">
-                <h6 class="category">{{ task.employee }} <small> posted on {{ task.timestamp|date:'D d M Y' }}</small> </h6>
+                <h6 class="category">{{ task.employee }}</h6>
+                <small class="category"> posted on {{ task.timestamp|date:'D d M Y' }}</small> 
                 <h4 class="title">{{ task.name }}</h4>
                 <br>
-                <small>Description</small>
+                <small class="category">Description</small>
                 <p class="description">{{ task.description }}</p>
-                <small>Obstacles</small>
+                <small class="category">Obstacles</small>
                 {% if task.obstacles %}
-                    <p>{{ task.obstacles }}</p>
+                    <p class="description">{{ task.obstacles }}</p>
                 {% endif %}
                 <hr>
-                <small class="category"><strong>Deadline</strong></small>
-                <p>{{ task.deadline|date:'d M Y' }}</p>
+                {% if task.project %}
+                    <small class="category">Project</small>
+                    <p>{{ task.project }}</p>
+                {% endif %}
+                {% if task.deadline %}
+                    <small class="category"><strong>DEADLINE</strong></small>
+                    <p>{{ task.deadline|date:'d M Y' }}</p>
+                {% endif %}
+                <p class="text-right">
+                    <a href="" class="category">EDIT</a>  <a href="{% url 'tasks:delete' pk=task.id %}" class="category">DELETE</a>
+                </p>
             </div>                                           
         </div>
     </div>

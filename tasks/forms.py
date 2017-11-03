@@ -21,4 +21,7 @@ class TaskCreateForm(forms.ModelForm):
 
     class Meta:
         model = Task
-        fields = ['name', 'description', 'obstacles', 'deadline']
+        fields = ['project', 'name', 'description', 'obstacles', 'deadline']
+        labels = {
+            'name': _('Writer'),
+        }
