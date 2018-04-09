@@ -6,7 +6,6 @@
     </div>
 
     <!-- Sidebar navigation -->
-    {% load active_link_tags %}
     <ul class="nav">
         <li class="">
             <a href="{% url 'dashboard' %}">
@@ -15,7 +14,7 @@
             </a>
         </li>
         <li>
-            <a href="{% url 'tasks:list' %}" class="{% active_link 'tasks:list' %}">
+            <a href="{% url 'tasks:list' %}" class="">
                 <i class="pe-7s-note"></i>
                 <p>Tasks</p>
             </a>

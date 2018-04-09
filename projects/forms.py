@@ -2,7 +2,6 @@ from django import forms
 from django.forms.extras.widgets import SelectDateWidget
 
 from .models import Project
-from .models import Division
 
 from clients.models import Company
 from employees.models import Employee
@@ -17,10 +16,6 @@ class ProjectForm(forms.ModelForm):
             help_text = 'Project Team',
             queryset = Employee.objects.all(),
         )
-    division = forms.ModelChoiceField(
-        help_text = 'Division',
-        queryset = Division.objects.all()
-    )
     client = forms.ModelChoiceField(
         help_text = 'Client',
         queryset = Company.objects.all()
@@ -36,5 +31,5 @@ class ProjectForm(forms.ModelForm):
 
     class Meta:
         model = Project
-        fields = ['employees', 'division', 'client', 'name', 'description', 'deadline']
+        fields = ['employees', 'client', 'division', 'name', 'description', 'deadline']
         
